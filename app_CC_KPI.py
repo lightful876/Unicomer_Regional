@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 from datetime import datetime, timedelta
-#import plotly.express as px
+import plotly.express as px
 import streamlit as st
 import matplotlib.ticker as mtick
 import matplotlib.pyplot as plt
