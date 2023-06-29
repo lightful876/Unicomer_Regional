@@ -1,10 +1,12 @@
 import pandas as pd
 import os
-from datetime import datetime, timedelta
+import datetime
+from datetime import timedelta
 import streamlit as st
 import matplotlib.ticker as mtick
 import matplotlib.pyplot as plt
 import numpy as np
+import plotly.graph_objects as go
 
 os.chdir(r'C:\Users\roy_shaw\Desktop\Completed Reports\CC KPI_and_Live Chat')
 
@@ -86,6 +88,12 @@ def create_dashboard(df_main, fiscal, country, date_range):
     st.title("Table of Contact Center KPIs and measurements")
     st.dataframe(df_selection)
 
+    calls_sum = df_selection['Calls Off'].sum()
+    calls_ans = df_selection['Calls Ans'].sum()
+
+    st.write('Calls Offered', f'Sum of calls offered over specified interval is {calls_sum}')
+    st.write('Calls Answered', f'Sum of calls answered over specified interval is {calls_ans}')
+
     # Visual 1
     # Convert 'Date' column to datetime and set it to index
     df_main['Date'] = pd.to_datetime(df_main['Date'])
@@ -101,14 +109,9 @@ def create_dashboard(df_main, fiscal, country, date_range):
 
     st.title("Weekly Calls Offered vs Calls Accepted")
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(merged_calls['Date'], merged_calls['Calls Off'], label='Calls Offered')
     ax.plot(merged_calls['Date'], merged_calls['Calls Ans'], label='Calls Answered')
-    ax.set_xlabel('Week')
-    ax.set_ylabel('Call Volume')
-    ax.set_title('Weekly Offered vs Accepted Calls')
-    ax.legend()
-    ax.plot()
 
     date_range1 = st.slider(
         'Select Date Range',
@@ -121,10 +124,19 @@ def create_dashboard(df_main, fiscal, country, date_range):
     filtered_data = merged_calls[(merged_calls['Date'] >= date_range1[0]) & (merged_calls['Date'] <= date_range1[1])]
 
     fig, ax = plt.subplots()
+    plt.xticks(rotation=90)
     ax.plot(filtered_data['Date'], filtered_data['Calls Off'], label='Calls Off')
     ax.plot(filtered_data['Date'], filtered_data['Calls Ans'], label='Calls Ans')
+    ax.set_xlabel('Week Of')
+    ax.set_ylabel('Call Volume')
+    ax.set_title('Weekly Offered vs Accepted Calls')
+    ax.legend()
+    ax.plot()
+
+    plt.tight_layout()
     ax.legend()
 
+    plt.subplots_adjust(bottom=0.2)
     st.pyplot(fig)
 
     #Visual 2
@@ -138,6 +150,7 @@ def create_dashboard(df_main, fiscal, country, date_range):
     daily_calls = daily_calls.reset_index()
 
     # Create a date range slider
+
     date_range_ = st.slider(
         'Select Date Range',
         daily_calls['Date'].min().to_pydatetime(),
@@ -146,28 +159,34 @@ def create_dashboard(df_main, fiscal, country, date_range):
         key='date_range_'
     )
 
-    filtered_data = daily_calls[(daily_calls['Date'] >= date_range_[0]) & (daily_calls['Date'] <= date_range_[1])]
-    filtered_offered = filtered_data['Calls Off']
-    filtered_answered = filtered_data['Calls Ans']
+    min_date, max_date = date_range_
+    selected_data = daily_calls[(daily_calls['Date'] >= min_date) & (daily_calls['Date'] <= max_date)]
+
+    x = selected_data['Date']
+    y1 = selected_data['Calls Off']
+    y2 = selected_data['Calls Ans']
 
     bar_width = 0.35
+    x_numeric = np.arange(len(x))
 
-    x = np.arange(len(filtered_offered))
-
-    fig_filtered, ax_filtered = plt.subplots()
-    ax_filtered.bar(x, filtered_offered, width=bar_width, label='Calls Offered')
-    ax_filtered.bar(x + bar_width, filtered_answered, width=bar_width, label='Calls Answered')
+    fig_filtered, ax_filtered = plt.subplots(figsize=(10, 6))
+    ax_filtered.bar(x_numeric, y1, width=bar_width, align='center', label='Calls Offered')
+    ax_filtered.bar(x_numeric+bar_width, y2, width=bar_width, align='edge', label='Calls Answered')
 
     # Set the x-axis tick locations and labels
     tick_freq = 14
-    tick_indices = np.arange(0, len(filtered_data['Date']), tick_freq)
-    tick_labels = filtered_data.loc[tick_indices, 'Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+    tick_indices = np.arange(0, len(x_numeric), tick_freq)
+    tick_labels = x.iloc[tick_indices].apply(lambda x: x.strftime('%Y-%m-%d'))
     ax_filtered.set_xticks(tick_indices)
     ax_filtered.set_xticklabels(tick_labels, rotation=90)
     ax_filtered.set_ylabel('Call Volume')
 
+    plt.tight_layout()
+
     # Customize the filtered plot
     ax_filtered.legend()
+
+    plt.subplots_adjust(bottom=0.2)
 
     st.pyplot(fig_filtered)
 
@@ -182,26 +201,29 @@ def create_dashboard(df_main, fiscal, country, date_range):
     daily_percent=daily_percent.reset_index()
 
     filtered_data = daily_percent[(daily_percent['Date'] >= date_range_[0]) & (daily_percent['Date'] <= date_range_[1])]
-    filtered_offered = filtered_data['WoW % change (offer)']*100
-    filtered_answered = filtered_data['WoW % change (ans)']*100
+
+    x = selected_data['Date']
+    y1 = filtered_data['WoW % change (offer)']*100
+    y2 = filtered_data['WoW % change (ans)']*100
 
     bar_width = 0.35
 
-    x = np.arange(len(filtered_offered))
+    x_numeric = np.arange(len(x))
 
-    fig_filtered, ax_filtered = plt.subplots()
+    fig_filtered, ax_filtered = plt.subplots(figsize=(10, 6))
     ax_filtered.yaxis.set_major_formatter(mtick.PercentFormatter())
-    ax_filtered.bar(x, filtered_offered, width=bar_width, label='Percent Change Calls Offered')
-    ax_filtered.bar(x + bar_width, filtered_answered, width=bar_width, label='Percent Change Calls Answered')
+    ax_filtered.bar(x_numeric, y1, width=bar_width, label='Percent Change Calls Offered')
+    ax_filtered.bar(x_numeric + bar_width, y2, width=bar_width, label='Percent Change Calls Answered')
 
     # Set the x-axis tick locations and labels
     tick_freq = 14
-    tick_indices = np.arange(0, len(filtered_data['Date']), tick_freq)
-    tick_labels = filtered_data.loc[tick_indices, 'Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+    tick_indices = np.arange(0, len(x_numeric), tick_freq)
+    tick_labels = x.iloc[tick_indices].apply(lambda x: x.strftime('%Y-%m-%d'))
     ax_filtered.set_xticks(tick_indices)
     ax_filtered.set_xticklabels(tick_labels, rotation=90)
-    ax_filtered.set_ylabel('Call Volume')
+    ax_filtered.set_ylabel('Percentage WoW Call Value')
 
+    plt.tight_layout()
     # Customize the filtered plot
     ax_filtered.legend()
     st.pyplot(fig_filtered)
@@ -219,31 +241,27 @@ def create_dashboard(df_main, fiscal, country, date_range):
     df_metric = df_metric.reset_index()
 
     filtered_data = df_metric[(df_metric['Date'] >= date_range_[0]) & (df_metric['Date'] <= date_range_[1])]
-    filtered_SL = filtered_data['SL']*100
-    filtered_AU = filtered_data['AU']*100
-    filtered_ABR = filtered_data['ABR']*100
+    x = selected_data['Date']
+    y1 = filtered_data['SL']*100
+    y2 = filtered_data['AU']*100
+    y3 = filtered_data['ABR']*100
 
     bar_width = 0.35
 
-    x = np.arange(len(filtered_SL))
+    x_numeric = np.arange(len(x))
 
     # Set the x-axis tick locations and labels
     tick_freq = 14
-    tick_indices = np.arange(0, len(filtered_data['Date']), tick_freq)
-    tick_labels = filtered_data.loc[tick_indices, 'Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
-    fig_filtered, ax_filtered = plt.subplots()
+    tick_indices = np.arange(0, len(x_numeric), tick_freq)
+    tick_labels = x.iloc[tick_indices].apply(lambda x: x.strftime('%Y-%m-%d'))
+    fig_filtered, ax_filtered = plt.subplots(figsize=(10, 6))
 
-    # Y-axis values for line chart 1
-    y1 = filtered_ABR
-    ax_filtered.plot(x, y1, color='blue', label='ABR Line Chart')
+    ax_filtered.plot(x_numeric, y3, color='blue', label='ABR Line Chart')
 
-    # Y-axis values for line chart 2
-    y2 = filtered_SL
-    ax_filtered.plot(x, y2, color='orange', label='SL Line Chart')
+    ax_filtered.plot(x_numeric, y1, color='orange', label='SL Line Chart')
 
-    y3 = filtered_AU  # Y-axis values for bar chart
     bar_width = 0.4
-    ax_filtered.bar(x, y3, width=bar_width, color='gray', align='center', label='AU Bar Chart')
+    ax_filtered.bar(x_numeric, y2, width=bar_width, color='gray', align='center', label='AU Bar Chart')
 
     ax_filtered.set_xticks(tick_indices)
     ax_filtered.set_xticklabels(tick_labels, rotation=90)
@@ -252,5 +270,72 @@ def create_dashboard(df_main, fiscal, country, date_range):
 
     ax_filtered.legend()
     st.pyplot(fig_filtered)
+
+    #Visual 5
+    st.title("Service Level vs Agents Logged")
+    df_cntrl = df_main[(df_main['Fiscal'].isin(fiscal)) & (df_main['Country'].isin(country))]
+
+    df_cntrl.reset_index(inplace=True)
+    filtered_data = df_cntrl[(df_cntrl['Date'] >= date_range_[0]) & (df_cntrl['Date'] <= date_range_[1])]
+    x = selected_data['Date']
+    y1 = filtered_data['SL'] * 100
+    y2 = filtered_data['Agents Log']
+
+    x_numeric = np.arange(len(x))
+
+    x = x[:len(x_numeric)]
+    y1 = y1[:len(x_numeric)]
+    y2 = y2[:len(x_numeric)]
+
+    tick_freq = 14
+    tick_indices = np.arange(0, len(x_numeric), tick_freq)
+    tick_labels = x.iloc[tick_indices].apply(lambda x: x.strftime('%Y-%m-%d'))
+
+
+    offset = 0.2
+    fig_filtered, ax_filtered = plt.subplots(figsize=(10, 6))
+
+    ax_filtered.bar(x_numeric, y1, color='blue', label='Service Level')
+
+    ax2 = ax_filtered.twinx()
+    ax2.plot(x_numeric + offset, y2, color='orange', label='Agents Logged')
+    ax2.set_ylabel('Count of Agents Logged')
+
+    ax_filtered.set_xticks(tick_indices)
+    ax_filtered.set_xticklabels(tick_labels, rotation=90)
+    ax_filtered.yaxis.set_major_formatter(mtick.PercentFormatter())
+    ax_filtered.set_ylabel('Service Level Achieved')
+
+    ax_filtered.legend(loc='upper left', bbox_to_anchor=(0, 1))
+    ax2.legend(loc='upper right', bbox_to_anchor=(1, 1))
+    st.pyplot(fig_filtered)
+
+    #Visual 6
+    st.title("Linear-Gauge Chart of AHT")
+    df_timer = df_main[(df_main['Fiscal'].isin(fiscal)) & (df_main['Country'].isin(country))]
+    default_value = 0
+
+    df_timer.reset_index(inplace=True)
+    filtered_data = df_timer[(df_timer['Date'] >= date_range_[0]) & (df_timer['Date'] <= date_range_[1])]
+
+    filtered_data['AHT'] = [timedelta(hours=x.hour, minutes=x.minute, seconds=x.second) if isinstance(x, datetime.time) else timedelta(seconds=0) for x in filtered_data['AHT']]
+
+    average_AHT = np.mean(filtered_data['AHT'][filtered_data['AHT'] != 0])
+
+    average_AHT_seconds = average_AHT.total_seconds()
+
+    fig = go.Figure(go.Indicator(domain = {'x': [0, 1], 'y': [0, 1]},
+          value = average_AHT_seconds, mode = "gauge+number+delta",
+          title = {'text': "Average Handle Time (Over selected Interval) in seconds"},
+          delta={'reference': 300},
+          gauge = {'axis': {'range': [None, 600]},
+          'bar': {'color': "black"},
+          'steps' : [{'range': [0, 180], 'color': "green"},
+          {'range': [180, 300], 'color': "gold"},
+          {'range': [300, 600], 'color': "red"}]}
+          ))
+    st.plotly_chart(fig)
+    # Display the chart value
+    st.write(f"Average AHT over period specified: {average_AHT_seconds:.0f} seconds")
 
 create_dashboard(df_main, fiscal=[], country=[], date_range=(df_main['Date'].min(), df_main['Date'].max()))
