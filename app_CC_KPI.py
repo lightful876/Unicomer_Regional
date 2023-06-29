@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 
-os.chdir(r'C:\Users\roy_shaw\Desktop\Completed Reports\CC KPI_and_Live Chat')
+os.chdir('/home/roy_shaw/Desktop/Completed Reports/CC KPI_and_Live Chat')
 
 df_OECS = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='OECS', usecols='A:R')
 df_GUY = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Guyana', usecols='A:R')
