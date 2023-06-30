@@ -16,7 +16,7 @@ df_OECS = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/bl
 df_GUY = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Guyana', usecols='A:R')
 df_JAM = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Jamaica', usecols='A:Q,S')
 df_TTO = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S')
-df_BAR = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx'), sheet_name='Barbados', usecols='A:Q,S')
+df_BAR = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Barbados', usecols='A:Q,S')
 
 df_OECS['Country'] = ['OECS'] * len(df_OECS['Date'])
 df_GUY['Country'] = ['Guyana'] * len(df_GUY['Date'])
@@ -28,7 +28,7 @@ df_OECS_ = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/b
 df_GUY_ = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Guyana', usecols='A:R')
 df_JAM_ = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Jamaica', usecols='A:Q,S')
 df_TTO_ = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S')
-df_BAR_ = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx'), sheet_name='Barbados', usecols='A:Q,S')
+df_BAR_ = pd.read_excel('https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Barbados', usecols='A:Q,S')
 
 df_OECS_['Country'] = ['OECS'] * len(df_OECS_['Date'])
 df_GUY_['Country'] = ['Guyana'] * len(df_GUY_['Date'])
