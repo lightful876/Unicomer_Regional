@@ -88,9 +88,29 @@ def create_dashboard(df_main, fiscal, country, date_range):
 
     calls_sum = df_selection['Calls Off'].sum()
     calls_ans = df_selection['Calls Ans'].sum()
+    svl_avg = df_selection_filtered['SL'].mean()
+    abr_avg = df_selection_filtered['ABR'].mean()
+    ans_avg = df_selection_filtered['ANS'].mean()
+    au_avg = df_selection_filtered['AO/AU'].mean()
+    aa_avg = df_selection_filtered['AA'].mean()
 
     st.write('Calls Offered', f'Sum of calls offered over specified interval is {calls_sum}')
     st.write('Calls Answered', f'Sum of calls answered over specified interval is {calls_ans}')
+    st.write('Service Level', f'average of Service Level over specified interval is {svl_avg:.3f}')
+    st.write('Abandonment Rate', f'average of ABR over specified interval is {abr_avg:.3f}')
+    st.write('Answer Rate', f'average of ANS over specified interval is {ans_avg:.3f}')
+    st.write('Agent Utilization', f'average of AU over specified interval is {au_avg:.3f}')
+    st.write('Agent Adherence', f'average of Agent Adherence over specified interval in {aa_avg:.3f}')
+
+    st.title('Distribution of Calls by Day')
+    day_order = ['D', 'M', 'T', 'W', 'R', 'F', 'S']
+    df_selection_DOW = df_selection[(df_selection['Day of the week'] != 'HOL') & (df_selection['Day of the week'] != 'D ')]
+    df_DOW = df_selection_DOW.dropna(subset=['Calls Off']).groupby(['Day of the week'])['Calls Off'].sum()
+    df_DOW = df_DOW.reindex(day_order)
+    fig = df_DOW.plot(kind='bar')
+    plt.xlabel('Day of the Week')
+    plt.ylabel('Calls Offered')
+    st.pyplot(fig.figure)
 
     # Visual 1
     # Convert 'Date' column to datetime and set it to index
