@@ -85,6 +85,7 @@ def create_dashboard(df_main, fiscal, country, date_range):
     # Display the table
     st.title("Table of Contact Center KPIs and measurements")
     st.dataframe(df_selection)
+    df_selection_filtered = df_selection[df_selection['Calls Off'] != 0]
 
     calls_sum = df_selection['Calls Off'].sum()
     calls_ans = df_selection['Calls Ans'].sum()
