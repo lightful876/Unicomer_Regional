@@ -8,11 +8,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 
-df_OECS = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
-df_GUY = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
-df_JAM = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
-df_TTO = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
-df_BAR = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
+os.chdir(r'C:\Users\roy_shaw\OneDrive - Grupo Unicomer Unicomer Group\Work_Files_optional_recreation\Completed Reports\CC KPI_and_Live Chat')
+
+df_OECS = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
+df_GUY = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
+df_JAM = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
+df_TTO = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
+df_BAR = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
 
 df_OECS['Country'] = ['OECS'] * len(df_OECS['Date'])
 df_GUY['Country'] = ['Guyana'] * len(df_GUY['Date'])
@@ -20,11 +22,11 @@ df_JAM['Country'] = ['Jamaica'] * len(df_JAM['Date'])
 df_TTO['Country'] = ['Trinidad and Tobago'] * len(df_TTO['Date'])
 df_BAR['Country'] = ['Barbados'] * len(df_BAR['Date'])
 
-df_OECS_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
-df_GUY_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
-df_JAM_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
-df_TTO_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
-df_BAR_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/raw/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
+df_OECS_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
+df_GUY_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
+df_JAM_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
+df_TTO_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
+df_BAR_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
 
 df_OECS_['Country'] = ['OECS'] * len(df_OECS_['Date'])
 df_GUY_['Country'] = ['Guyana'] * len(df_GUY_['Date'])
@@ -32,13 +34,28 @@ df_JAM_['Country'] = ['Jamaica'] * len(df_JAM_['Date'])
 df_TTO_['Country'] = ['Trinidad and Tobago'] * len(df_TTO_['Date'])
 df_BAR_['Country'] = ['Barbados'] * len(df_BAR_['Date'])
 
-df_OECS_agg = pd.concat([df_OECS, df_OECS_])
-df_GUY_agg = pd.concat([df_GUY, df_GUY_])
-df_JAM_agg = pd.concat([df_JAM, df_JAM_])
-df_TTO_agg = pd.concat([df_TTO, df_TTO_])
-df_BAR_agg = pd.concat([df_BAR, df_BAR_])
+df_OECS_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
+df_GUY_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
+df_JAM_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
+df_TTO_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
+df_BAR_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
+df_BEL_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Belize', usecols='A:Q,S', engine='openpyxl')
 
-df_main = pd.concat([df_OECS_agg, df_GUY_agg, df_JAM_agg, df_TTO_agg, df_BAR_agg], ignore_index=False)
+df_OECS_FY25['Country'] = ['OECS'] * len(df_OECS_FY25['Date'])
+df_GUY_FY25['Country'] = ['Guyana'] * len(df_GUY_FY25['Date'])
+df_JAM_FY25['Country'] = ['Jamaica'] * len(df_JAM_FY25['Date'])
+df_TTO_FY25['Country'] = ['Trinidad and Tobago'] * len(df_TTO_FY25['Date'])
+df_BAR_FY25['Country'] = ['Barbados'] * len(df_BAR_FY25['Date'])
+df_BEL_FY25['Country'] = ['Belize'] * len(df_BEL_FY25['Date'])
+
+df_OECS_agg = pd.concat([df_OECS, df_OECS_, df_OECS_FY25])
+df_GUY_agg = pd.concat([df_GUY, df_GUY_, df_GUY_FY25])
+df_JAM_agg = pd.concat([df_JAM, df_JAM_, df_JAM_FY25])
+df_TTO_agg = pd.concat([df_TTO, df_TTO_, df_TTO_FY25])
+df_BAR_agg = pd.concat([df_BAR, df_BAR_, df_BAR_FY25])
+df_BEL_agg = pd.concat([df_BEL_FY25])
+
+df_main = pd.concat([df_OECS_agg, df_GUY_agg, df_JAM_agg, df_TTO_agg, df_BAR_agg, df_BEL_FY25], ignore_index=False)
 
 def create_dashboard(df_main, fiscal, country, date_range):
    # Creating dashboard page
@@ -87,16 +104,16 @@ def create_dashboard(df_main, fiscal, country, date_range):
     st.dataframe(df_selection)
     df_selection_filtered = df_selection[df_selection['Calls Off'] != 0]
 
-    calls_sum = df_selection['Calls Off'].sum()
-    calls_ans = df_selection['Calls Ans'].sum()
+    calls_sum = df_selection_filtered['Calls Off'].sum()
+    calls_ans = df_selection_filtered['Calls Ans'].sum()
     svl_avg = df_selection_filtered['SL'].mean()
     abr_avg = df_selection_filtered['ABR'].mean()
     ans_avg = df_selection_filtered['ANS'].mean()
     au_avg = df_selection_filtered['AO/AU'].mean()
     aa_avg = df_selection_filtered['AA'].mean()
 
-    st.write('Calls Offered', f'Sum of calls offered over specified interval is {calls_sum}')
-    st.write('Calls Answered', f'Sum of calls answered over specified interval is {calls_ans}')
+    st.write('Calls Offered', f'sum of calls offered over specified interval is {calls_sum:.0f}')
+    st.write('Calls Answered', f'sum of calls answered over specified interval is {calls_ans:.0f}')
     st.write('Service Level', f'average of Service Level over specified interval is {svl_avg:.3f}')
     st.write('Abandonment Rate', f'average of ABR over specified interval is {abr_avg:.3f}')
     st.write('Answer Rate', f'average of ANS over specified interval is {ans_avg:.3f}')
@@ -105,7 +122,7 @@ def create_dashboard(df_main, fiscal, country, date_range):
 
     st.title('Distribution of Calls by Day')
     day_order = ['D', 'M', 'T', 'W', 'R', 'F', 'S']
-    df_selection_DOW = df_selection[(df_selection['Day of the week'] != 'HOL') & (df_selection['Day of the week'] != 'D ')]
+    df_selection_DOW = df_selection[(df_selection['Day of the week'] != 'HOL') & (df_selection['Day of the week'] != 'D')]
     df_DOW = df_selection_DOW.dropna(subset=['Calls Off']).groupby(['Day of the week'])['Calls Off'].sum()
     df_DOW = df_DOW.reindex(day_order)
     fig = df_DOW.plot(kind='bar')
@@ -337,11 +354,13 @@ def create_dashboard(df_main, fiscal, country, date_range):
     df_timer.reset_index(inplace=True)
     filtered_data = df_timer[(df_timer['Date'] >= date_range_[0]) & (df_timer['Date'] <= date_range_[1])]
 
-    filtered_data['AHT'] = [timedelta(hours=x.hour, minutes=x.minute, seconds=x.second) if isinstance(x, datetime.time) else timedelta(seconds=0) for x in filtered_data['AHT']]
+    #filtered_data['AHT'] = [int(x) for x in filtered_data['AHT']]
+
+    #print(filtered_data[~filtered_data['AHT'].apply(lambda x: isinstance(x, int))].index)
 
     average_AHT = np.mean(filtered_data['AHT'][filtered_data['AHT'] != 0])
 
-    average_AHT_seconds = average_AHT.total_seconds()
+    average_AHT_seconds = average_AHT
 
     fig = go.Figure(go.Indicator(domain = {'x': [0, 1], 'y': [0, 1]},
           value = average_AHT_seconds, mode = "gauge+number+delta",
@@ -349,9 +368,9 @@ def create_dashboard(df_main, fiscal, country, date_range):
           delta={'reference': 300},
           gauge = {'axis': {'range': [None, 600]},
           'bar': {'color': "black"},
-          'steps' : [{'range': [0, 180], 'color': "green"},
-          {'range': [180, 300], 'color': "gold"},
-          {'range': [300, 600], 'color': "red"}]}
+          'steps' : [{'range': [0, 300], 'color': "green"},
+          {'range': [300, 480], 'color': "gold"},
+          {'range': [480, 600], 'color': "red"}]}
           ))
     st.plotly_chart(fig)
     # Display the chart value
