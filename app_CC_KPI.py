@@ -8,15 +8,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 
-url_FY23 = 
-url_FY24 =
-url_FY25 =
+url_FY23 = 'https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx'
+url_FY24 = 'https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx'
+url_FY25 = 'https://raw.github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx'
 
-df_OECS = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
-df_GUY = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
-df_JAM = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
-df_TTO = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
-df_BAR = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Barbados', usecols='A:X', engine='openpyxl')
+df_OECS = pd.read_excel(url_FY23, sheet_name='OECS', usecols='A:X', engine='openpyxl')
+df_GUY = pd.read_excel(url_FY23, sheet_name='Guyana', usecols='A:X', engine='openpyxl')
+df_JAM = pd.read_excel(url_FY23, sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
+df_TTO = pd.read_excel(url_FY23, sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
+df_BAR = pd.read_excel(url_FY23, sheet_name='Barbados', usecols='A:X', engine='openpyxl')
 
 df_OECS['Country'] = ['OECS'] * len(df_OECS['Date'])
 df_GUY['Country'] = ['Guyana'] * len(df_GUY['Date'])
@@ -24,12 +24,12 @@ df_JAM['Country'] = ['Jamaica'] * len(df_JAM['Date'])
 df_TTO['Country'] = ['Trinidad and Tobago'] * len(df_TTO['Date'])
 df_BAR['Country'] = ['Barbados'] * len(df_BAR['Date'])
 
-df_OECS_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
-df_GUY_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
-df_JAM_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
-df_TTO_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
-df_BAR_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Barbados', usecols='A:X', engine='openpyxl')
-df_BEL_ = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx', sheet_name='Belize', usecols='A:X', engine='openpyxl')
+df_OECS_ = pd.read_excel(url_FY24, sheet_name='OECS', usecols='A:X', engine='openpyxl')
+df_GUY_ = pd.read_excel(url_FY24, sheet_name='Guyana', usecols='A:X', engine='openpyxl')
+df_JAM_ = pd.read_excel(url_FY24, sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
+df_TTO_ = pd.read_excel(url_FY24, sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
+df_BAR_ = pd.read_excel(url_FY24, sheet_name='Barbados', usecols='A:X', engine='openpyxl')
+df_BEL_ = pd.read_excel(url_FY24, sheet_name='Belize', usecols='A:X', engine='openpyxl')
 
 df_OECS_['Country'] = ['OECS'] * len(df_OECS_['Date'])
 df_GUY_['Country'] = ['Guyana'] * len(df_GUY_['Date'])
@@ -38,12 +38,12 @@ df_TTO_['Country'] = ['Trinidad and Tobago'] * len(df_TTO_['Date'])
 df_BAR_['Country'] = ['Barbados'] * len(df_BAR_['Date'])
 df_BEL_['Country'] = ['Belize'] * len(df_BEL_['Date'])
 
-df_OECS_FY25 = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
-df_GUY_FY25 = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
-df_JAM_FY25 = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
-df_TTO_FY25 = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx', sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
-df_BAR_FY25 = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx', sheet_name='Barbados', usecols='A:X', engine='openpyxl')
-df_BEL_FY25 = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx', sheet_name='Belize', usecols='A:X', engine='openpyxl')
+df_OECS_FY25 = pd.read_excel(url_FY25, sheet_name='OECS', usecols='A:X', engine='openpyxl')
+df_GUY_FY25 = pd.read_excel(url_FY25, sheet_name='Guyana', usecols='A:X', engine='openpyxl')
+df_JAM_FY25 = pd.read_excel(url_FY25, sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
+df_TTO_FY25 = pd.read_excel(url_FY25, sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
+df_BAR_FY25 = pd.read_excel(url_FY25, sheet_name='Barbados', usecols='A:X', engine='openpyxl')
+df_BEL_FY25 = pd.read_excel(url_FY25, sheet_name='Belize', usecols='A:X', engine='openpyxl')
 
 df_OECS_FY25['Country'] = ['OECS'] * len(df_OECS_FY25['Date'])
 df_GUY_FY25['Country'] = ['Guyana'] * len(df_GUY_FY25['Date'])
