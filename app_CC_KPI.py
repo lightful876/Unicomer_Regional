@@ -10,11 +10,11 @@ import plotly.graph_objects as go
 
 os.chdir(r'C:\Users\roy_shaw\OneDrive - Grupo Unicomer Unicomer Group\Work_Files_optional_recreation\Completed Reports\CC KPI_and_Live Chat')
 
-df_OECS = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
-df_GUY = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
-df_JAM = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
-df_TTO = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
-df_BAR = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
+df_OECS = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
+df_GUY = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
+df_JAM = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
+df_TTO = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
+df_BAR = pd.read_excel('CC KPI & Live Chat Reports FY23.xlsx', sheet_name='Barbados', usecols='A:X', engine='openpyxl')
 
 df_OECS['Country'] = ['OECS'] * len(df_OECS['Date'])
 df_GUY['Country'] = ['Guyana'] * len(df_GUY['Date'])
@@ -22,24 +22,26 @@ df_JAM['Country'] = ['Jamaica'] * len(df_JAM['Date'])
 df_TTO['Country'] = ['Trinidad and Tobago'] * len(df_TTO['Date'])
 df_BAR['Country'] = ['Barbados'] * len(df_BAR['Date'])
 
-df_OECS_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
-df_GUY_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
-df_JAM_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
-df_TTO_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
-df_BAR_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
+df_OECS_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
+df_GUY_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
+df_JAM_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
+df_TTO_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
+df_BAR_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Barbados', usecols='A:X', engine='openpyxl')
+df_BEL_ = pd.read_excel('CC KPI & Live Chat Reports FY24.xlsx', sheet_name='Belize', usecols='A:X', engine='openpyxl')
 
 df_OECS_['Country'] = ['OECS'] * len(df_OECS_['Date'])
 df_GUY_['Country'] = ['Guyana'] * len(df_GUY_['Date'])
 df_JAM_['Country'] = ['Jamaica'] * len(df_JAM_['Date'])
 df_TTO_['Country'] = ['Trinidad and Tobago'] * len(df_TTO_['Date'])
 df_BAR_['Country'] = ['Barbados'] * len(df_BAR_['Date'])
+df_BEL_['Country'] = ['Belize'] * len(df_BEL_['Date'])
 
-df_OECS_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='OECS', usecols='A:R', engine='openpyxl')
-df_GUY_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Guyana', usecols='A:R', engine='openpyxl')
-df_JAM_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Jamaica', usecols='A:Q,S', engine='openpyxl')
-df_TTO_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Trinidad and Tobago', usecols='A:Q,S', engine='openpyxl')
-df_BAR_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Barbados', usecols='A:Q,S', engine='openpyxl')
-df_BEL_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Belize', usecols='A:Q,S', engine='openpyxl')
+df_OECS_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
+df_GUY_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
+df_JAM_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
+df_TTO_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Trinidad and Tobago', usecols='A:X', engine='openpyxl')
+df_BAR_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Barbados', usecols='A:X', engine='openpyxl')
+df_BEL_FY25 = pd.read_excel('CC KPI & Live Chat Reports FY25.xlsx', sheet_name='Belize', usecols='A:X', engine='openpyxl')
 
 df_OECS_FY25['Country'] = ['OECS'] * len(df_OECS_FY25['Date'])
 df_GUY_FY25['Country'] = ['Guyana'] * len(df_GUY_FY25['Date'])
@@ -53,7 +55,7 @@ df_GUY_agg = pd.concat([df_GUY, df_GUY_, df_GUY_FY25])
 df_JAM_agg = pd.concat([df_JAM, df_JAM_, df_JAM_FY25])
 df_TTO_agg = pd.concat([df_TTO, df_TTO_, df_TTO_FY25])
 df_BAR_agg = pd.concat([df_BAR, df_BAR_, df_BAR_FY25])
-df_BEL_agg = pd.concat([df_BEL_FY25])
+df_BEL_agg = pd.concat([df_BEL_, df_BEL_FY25])
 
 df_main = pd.concat([df_OECS_agg, df_GUY_agg, df_JAM_agg, df_TTO_agg, df_BAR_agg, df_BEL_FY25], ignore_index=False)
 
@@ -109,7 +111,7 @@ def create_dashboard(df_main, fiscal, country, date_range):
     svl_avg = df_selection_filtered['SL'].mean()
     abr_avg = df_selection_filtered['ABR'].mean()
     ans_avg = df_selection_filtered['ANS'].mean()
-    au_avg = df_selection_filtered['AO/AU'].mean()
+    au_avg = df_selection_filtered['AU'].mean()
     aa_avg = df_selection_filtered['AA'].mean()
 
     st.write('Calls Offered', f'sum of calls offered over specified interval is {calls_sum:.0f}')
@@ -122,12 +124,17 @@ def create_dashboard(df_main, fiscal, country, date_range):
 
     st.title('Distribution of Calls by Day')
     day_order = ['D', 'M', 'T', 'W', 'R', 'F', 'S']
-    df_selection_DOW = df_selection[(df_selection['Day of the week'] != 'HOL') & (df_selection['Day of the week'] != 'D')]
-    df_DOW = df_selection_DOW.dropna(subset=['Calls Off']).groupby(['Day of the week'])['Calls Off'].sum()
-    df_DOW = df_DOW.reindex(day_order)
-    fig = df_DOW.plot(kind='bar')
-    plt.xlabel('Day of the Week')
-    plt.ylabel('Calls Offered')
+    df_selection_dow = df_selection[(df_selection['Day of the week'] != 'HOL') & (df_selection['Day of the week'] != 'D')]
+    df_dow = df_selection_dow.dropna(subset=['Calls Off']).groupby(['Day of the week'])['Calls Off'].sum()
+    df_dow_ans = df_selection_dow.dropna(subset=['Calls Ans']).groupby(['Day of the week'])['Calls Ans'].sum()
+    df_dow = df_dow.reindex(day_order)
+    df_dow_ans = df_dow_ans.reindex(day_order)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.bar(day_order, df_dow, label='Calls Offered')
+    ax.bar(day_order, df_dow_ans, label='Calls Ans')
+    ax.set_xlabel('Day of the Week')
+    ax.set_ylabel('Call Volume')
+    ax.set_title('Grouped Daily Offered vs Accepted Calls')
     st.pyplot(fig.figure)
 
     # Visual 1
@@ -230,17 +237,17 @@ def create_dashboard(df_main, fiscal, country, date_range):
     st.title("Percent Change Week over Week Calls Offered and Calls Answered")
 
     daily_percent = df_main[(df_main['Fiscal'].isin(fiscal)) & (df_main['Country'].isin(country))]
-    daily_percent = daily_percent['WoW % change (offer)'].resample('D').sum().to_frame(name='WoW % change (offer)')
-    daily_percent['WoW % change (ans)'] = df_main[df_main['Fiscal'].isin(fiscal) & df_main['Country'].isin(country)][
-        'WoW % change (ans)'].resample('D').sum()
+    daily_percent = daily_percent['Winsorized Values - Offered'].resample('D').sum().to_frame(name='Winsorized Values - Offered')
+    daily_percent['Winsorized Values - Ans'] = df_main[df_main['Fiscal'].isin(fiscal) & df_main['Country'].isin(country)][
+        'Winsorized Values - Ans'].resample('D').sum()
 
     daily_percent=daily_percent.reset_index()
 
     filtered_data = daily_percent[(daily_percent['Date'] >= date_range_[0]) & (daily_percent['Date'] <= date_range_[1])]
 
     x = selected_data['Date']
-    y1 = filtered_data['WoW % change (offer)']*100
-    y2 = filtered_data['WoW % change (ans)']*100
+    y1 = filtered_data['Winsorized Values - Offered']*100
+    y2 = filtered_data['Winsorized Values - Ans']*100
 
     bar_width = 0.35
 
@@ -270,7 +277,7 @@ def create_dashboard(df_main, fiscal, country, date_range):
     df_metric = df_main[(df_main['Fiscal'].isin(fiscal)) & (df_main['Country'].isin(country))]
     df_metric = df_metric['SL'].resample('D').sum().to_frame(name='SL')
     df_metric['AU'] = df_main[df_main['Fiscal'].isin(fiscal) & df_main['Country'].isin(country)][
-        'AO/AU'].resample('D').sum()
+        'AU'].resample('D').sum()
     df_metric['ABR'] = df_main[df_main['Fiscal'].isin(fiscal) & df_main['Country'].isin(country)][
         'ABR'].resample('D').sum()
 
