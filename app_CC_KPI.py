@@ -8,8 +8,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 
-os.chdir(r'C:\Users\roy_shaw\OneDrive - Grupo Unicomer Unicomer Group\Work_Files_optional_recreation\Completed Reports\CC KPI_and_Live Chat')
-
 df_OECS = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='OECS', usecols='A:X', engine='openpyxl')
 df_GUY = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Guyana', usecols='A:X', engine='openpyxl')
 df_JAM = pd.read_excel('https://github.com/lightful876/Unicomer_Regional/blob/main/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx', sheet_name='Jamaica', usecols='A:X', engine='openpyxl')
