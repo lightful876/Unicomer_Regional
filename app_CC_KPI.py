@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objects as go
 
-url_FY23 = r'https://raw.github.com/lightful876/Unicomer_Regional/blob/6fc252686c26cca52d1f8ed87fce0da6d9f3c615/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx'
-url_FY24 = r'https://raw.github.com/lightful876/Unicomer_Regional/blob/6fc252686c26cca52d1f8ed87fce0da6d9f3c615/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx'
-url_FY25 = r'https://raw.github.com/lightful876/Unicomer_Regional/blob/6fc252686c26cca52d1f8ed87fce0da6d9f3c615/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx'
+url_FY23 = r'https://github.com/lightful876/Unicomer_Regional/blob/6fc252686c26cca52d1f8ed87fce0da6d9f3c615/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY23.xlsx'
+url_FY24 = r'https://github.com/lightful876/Unicomer_Regional/blob/6fc252686c26cca52d1f8ed87fce0da6d9f3c615/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY24.xlsx'
+url_FY25 = r'https://github.com/lightful876/Unicomer_Regional/blob/6fc252686c26cca52d1f8ed87fce0da6d9f3c615/CC%20KPI%20%26%20Live%20Chat%20Reports%20FY25.xlsx'
 
 df_OECS = pd.read_excel(url_FY23, sheet_name='OECS', usecols='A:X', engine='openpyxl')
 df_GUY = pd.read_excel(url_FY23, sheet_name='Guyana', usecols='A:X', engine='openpyxl')
